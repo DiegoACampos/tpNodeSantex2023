@@ -27,8 +27,8 @@ async function getLibraryById(req, res, next) {
 
 async function getAllLibraries(req, res, next) {
   try {
-    const libraries = await libraryService.getAllLibraries();
-    res.status(200).send(libraries);
+    const library = await libraryService.getAllLibraries();
+    res.status(200).send(library);
   } catch (error) {
     next(error);
   }
@@ -43,7 +43,7 @@ async function editLibrary(req, res, next) {
     res.status(200).send(library);
   } catch (error) {
     next(error);
-  }
+  }  
 }
 
 async function deleteLibrary(req, res, next) {
