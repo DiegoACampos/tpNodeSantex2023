@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const { libraryDbInstance } = require('../db/sequelize-config');
 
-class Library extends Model { }
+class Libraries extends Model { }
 
-Library.init(
+Libraries.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -24,11 +24,11 @@ Library.init(
   },
   {
     sequelize: libraryDbInstance,
-    modelName: 'Library',
+    modelName: 'Libraries',
     createdAt: false,
     updatedAt: false,
   }
 );
 
-module.exports = { Library };
-
+module.exports = { Libraries };
+  
