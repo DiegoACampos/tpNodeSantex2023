@@ -10,7 +10,7 @@ async function createBook(req, res, next) {
   } catch (error) {
     next(error);
   }
-}
+}  
 
 async function getBookById(req, res, next) {
   const { id } = req.params;
