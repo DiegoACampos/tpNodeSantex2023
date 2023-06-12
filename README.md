@@ -1,4 +1,5 @@
 # tpNodeSantex2023
+
 como primer paso configure el entorno en visual studio.
 
 cree una carpeta (mkdir  tpNodeSantex).
@@ -18,3 +19,6 @@ primero creado las rutas luego los controladores siguiendo por los srvicios y tr
 el middleware.
 
 realize las preubas y se generaron todo tipos de errores, los cuales fui resolviendo.
+
+12/06 cambie los nombres de las tablas segun convenciones para sincronizar correctamente.
+  
