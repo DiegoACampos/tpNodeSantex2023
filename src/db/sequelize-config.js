@@ -2,7 +2,7 @@ const { Sequelize } = require('sequelize');
 
 const libraryDbInstance = new Sequelize({
   host: 'localhost',
-  database: 'librariyUser',
+  database: 'Library',
   username: 'root',
   password: 'pocho1988',
   dialect: 'mysql',
@@ -11,7 +11,7 @@ const libraryDbInstance = new Sequelize({
 
 const bookDbInstance = new Sequelize( {
   host: 'localhost',
-  database: 'librariyUser',
+  database: 'Library',
   username: 'root',
   password: 'pocho1988',
   dialect: 'mysql',
@@ -20,9 +20,9 @@ const bookDbInstance = new Sequelize( {
 
 const userDbInstance = new Sequelize({
   host: 'localhost',
-  database: 'librariyUser',
+  database: 'Library',
   username:'root',
-  password: 'pocho1988',
+  password: 'pocho1988',  
   dialect: 'mysql',
   port: 3306
 })
