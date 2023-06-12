@@ -1,14 +1,14 @@
 const { liveBooks } = require('../models/book')
-const { Library } = require('../models/librarys');
+const { Libraries } = require('../models/librarys');
 
 async function createLibrary(name, location, telephone) {
-  const library = await Library.create({ name, location, telephone });
+  const Library = await Libraries.create({ name, location, telephone });
 
-  return library;
+  return Library;
 }
 
 async function getLibraryById(id) {
-  const library = await Library.findByPk(id, {
+  const library = await Libraries.findByPk(id, {
     include: liveBooks, 
   });
 
@@ -16,13 +16,13 @@ async function getLibraryById(id) {
 }
 
 async function getAllLibraries() {
-  const libraries = await Library.findAll();
+  const Library = await Libraries.findAll();
 
-  return libraries;
+  return Library;
 }
 
 async function editLibrary(id, name, location, telephone) {
-  const library = await Library.findByPk(id);
+  const library = await Libraries.findByPk(id);
   if (!library) {
     throw new Error('Librería no encontrada');
   }
@@ -33,11 +33,11 @@ async function editLibrary(id, name, location, telephone) {
 
   await library.save();
 
-  return library;
+  return library;  
 }
 
 async function deleteLibrary(id) {
-  const deletedLibrary = await Library.destroy({
+  const deletedLibrary = await Libraries.destroy({
     where: {id},
   });
 
