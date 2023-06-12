@@ -28,7 +28,7 @@ liveBooks.init(
     libraryId: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'Library',
+        model: 'Libraries',
         key: 'id',
       },
     },
@@ -47,12 +47,13 @@ liveBooks.init(
 
 module.exports = { liveBooks };
 
-const { Library } = require('./librarys')
+const { Libraries } = require('./librarys')
 
 
-Library.hasMany(liveBooks, {
+Libraries.hasMany(liveBooks, {
   foreignKey: 'libraryId',
   onDelete: 'CASCADE',
 });
-liveBooks.belongsTo(Library, { foreignKey: 'libraryId' });
+liveBooks.belongsTo(Libraries, { foreignKey: 'libraryId' });
 
+  
