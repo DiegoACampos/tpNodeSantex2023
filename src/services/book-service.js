@@ -17,7 +17,7 @@ async function getBookById(id) {
 async function getAllBooks() {
   const books = await liveBooks.findAll();
 
-  return books;
+  return books;  
 }
 
 async function editBook(id, isbn, titulo, autor, year, libraryId) {
@@ -27,6 +27,29 @@ async function editBook(id, isbn, titulo, autor, year, libraryId) {
   }
 
   book.isbn = isbn;
+  book.titulo = titulo;
+  book.autor = autor;
+  book.year = year;
+  book.libraryId = libraryId;
+
+  await book.save();
+
+  return book;
+}
+
+async function updateBookDeleteStatus(id, deleteStatus) {
+  const updatedBook = await liveBooks.update(
+    { deleted: deleteStatus },
+    { where: { id } }
+    
+  );
+
+  return updatedBook;
+}
+
+
+module.exports = { createBook, getBookById, getAllBooks, updateBookDeleteStatus, editBook };
+
   book.titulo = titulo;
   book.autor = autor;
   book.year = year;
