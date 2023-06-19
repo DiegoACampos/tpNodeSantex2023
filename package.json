@@ -1,19 +1,18 @@
 {
-  "name": "correcciontpnodesantex2023",
+  "name": "lastp2",
   "version": "1.0.0",
-  "description": "tp Nodejs",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
-  "author": "DIEGO CAMPOS",
+  "author": "diego campos",
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
-    "express-session": "^1.17.3",
-    "mysql2": "^3.3.3",
-    "passport": "^0.6.0",
-    "passport-local": "^1.0.0",
-    "sequelize": "^6.32.0"
+    "mysql": "^2.18.1",
+    "mysql2": "^3.3.5",
+    "sequelize": "^6.32.0",
+    "sequelize-cli": "^6.6.1"
   }
 }
