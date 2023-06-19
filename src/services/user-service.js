@@ -1,18 +1,21 @@
-const { libUser } = require('../models/user');
+const { User } = require('../models/user');
 
-async function createUser(name, password) {
-  try {
-    const user = new libUser({
-      name: name,
-      password: password,
-    });
+function create(name, password) {
+    const user = new User()
 
-    await user.save();
+    user.name = name
+    user.password = password
 
-    return user;
-  } catch (error) {
-    throw new Error('Error al crear el usuario');
-  }
+    const logUser = user.save()
+    return logUser
 }
-module.exports = { createUser };
 
+async function getUserById(id) {
+    const user = await User.findByPk(id)
+    if(!user){
+        throw new Error(`Usuario no encontrado`)
+    }
+    return user
+}
+
+module.exports = { create, getUserById }
