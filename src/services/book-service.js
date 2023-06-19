@@ -1,74 +1,61 @@
-const { Sequelize } = require('sequelize');
+const  {Book}  = require('../models/books');
 
-const { liveBooks } = require('../models/book');
-
-async function createBook(isbn, titulo, autor, year, libraryId) {
-  const book = await liveBooks.create({ isbn, titulo, autor, year, libraryId, });
-
-  return book;
-}
-
-async function getBookById(id) {
-  const book = await liveBooks.findByPk(id);
-
-  return book;
-}
-
-async function getAllBooks() {
-  const books = await liveBooks.findAll();
-
-  return books;  
-}
-
-async function editBook(id, isbn, titulo, autor, year, libraryId) {
-  const book = await liveBooks.findByPk(id);
-  if (!book) {
-    throw new Error('Libro no encontrado');
-  }
-
-  book.isbn = isbn;
-  book.titulo = titulo;
-  book.autor = autor;
-  book.year = year;
-  book.libraryId = libraryId;
-
-  await book.save();
-
-  return book;
-}
-
-async function updateBookDeleteStatus(id, deleteStatus) {
-  const updatedBook = await liveBooks.update(
-    { deleted: deleteStatus },
-    { where: { id } }
+async function create (isbn,titulo,autor,year,libraryId){
+    const book = Book.build({
+    isbn: isbn,
+    titulo: titulo,
+    autor: autor,
+    year: year,
+    libraryId: libraryId,
+    })
     
-  );
+    const createdBook = await book.save()
+    return createdBook
+}
 
-  return updatedBook;
+async function getBook (id){
+    const book = await Book.findByPk(id)
+    if(!book){
+        throw new Error (`Libro no encontrado`)
+    }
+    return book;
+}
+
+async function getAll (){
+    const listBooks = await Book.findAll();
+    return listBooks
+}
+
+async function edit(id,isbn,titulo,autor,year,libraryId){
+    const book = Book.findByPk(id)
+    if(!book){
+        throw new Error (`Libro no encontrado`)
+    }
+        if(isbn){
+            book.isbn
+        }
+        if(titulo){
+            book.titulo
+        }
+        if(autor){
+            book.autor
+        }
+        if(year){
+            book.year
+        }
+        if(libraryId){
+            book.libraryId
+
+        }    
+};
+
+async function deleteOneBook(id){
+    const book = await Book.findByPk(id)
+    if(!book){
+        throw new Error (`Libro no encontrado`)
+    }
+    await book.destroy()
 }
 
 
-module.exports = { createBook, getBookById, getAllBooks, updateBookDeleteStatus, editBook };
-
-  book.titulo = titulo;
-  book.autor = autor;
-  book.year = year;
-  book.libraryId = libraryId;
-
-  await book.save();
-
-  return book;
-}
-
-async function updateBookDeleteStatus(id, deleteStatus) {
-  const updatedBook = await liveBooks.update(
-    { deleted: deleteStatus },
-    { where: { id } }
-    
-  );
-
-  return updatedBook;
-}
-
-
-module.exports = { createBook, getBookById, getAllBooks, updateBookDeleteStatus, editBook };
+module.exports = { getAll, getBook, create, edit, deleteOneBook}
