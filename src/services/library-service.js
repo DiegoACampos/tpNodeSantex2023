@@ -1,5 +1,5 @@
-const { Book } = require('../models/books');
-const { LibraryM } = require('../models/libraries');
+const { Book } = require('../models/book');
+const { LibraryM } = require('../models/librarys');
 
 async function create(nombre, location, telefono) {
     const libraries = LibraryM.build({
