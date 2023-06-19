@@ -1,28 +1,27 @@
 const { Model, DataTypes } = require('sequelize');
-const { libraryDbInstance } = require('../db/sequelize-config');
+const { DbInstance } = require('../db/sequelize-config');
 
-class libUser extends Model {
+class User extends Model { };
 
-}
-
-libUser.init(
-    {
-        name: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        password: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
+User.init({
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
 
     },
-    {
-        sequelize: libraryDbInstance,
-        modelName: 'User',
-        createdAt: false,
-        updatedAt: false,
+    name: {
+        type: DataTypes.STRING,
+    },
+    password: {
+        type: DataTypes.STRING,
     }
-);
+}, {
+    sequelize: DbInstance,
+    modelName: 'User',
+    tableName: 'UserM',
+    createdAt: false,
+    updatedAt: false
+})
 
-module.exports = { libUser };
+module.exports = { User }
