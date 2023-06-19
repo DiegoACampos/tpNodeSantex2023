@@ -1,59 +1,60 @@
 const { Model, DataTypes } = require('sequelize');
-const { bookDbInstance } = require('../db/sequelize-config');
+const { DbInstance } = require('../db/sequelize-config');
+const {LibraryM} = require('./libraries')
 
-class liveBooks extends Model { 
-  
-}
 
-liveBooks.init(
-  {
+class Book extends Model { };
+
+Book.init({
     id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
-      allowNull: false,
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
     },
     isbn: {
-      type: DataTypes.INTEGER,
+        type: DataTypes.INTEGER,
+        allowNull:false
     },
     titulo: {
-      type: DataTypes.STRING,
+        type: DataTypes.STRING,
+        allowNull:false
     },
     autor: {
-      type: DataTypes.STRING,
+        type: DataTypes.STRING,
+        allowNull:false
     },
     year: {
-      type: DataTypes.STRING,
-    },
-    libraryId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'Libraries',
-        key: 'id',
-      },
-    },
+        type: DataTypes.STRING,
+        allowNull:false
+     },
+     libraryId:{
+        type:DataTypes.INTEGER,       
+     },
     deleted: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+        validate: {
+            isIn: [['true', 'false']]
+        },
+        set(value) {
+            if (value === true) {
+                this.setDataValue('deleted', 'true');
+            } else if (value === false) {
+                this.setDataValue('deleted', 'false');
+            }
+        }
+
     },
-  },
-  {
-    sequelize: bookDbInstance,
-    modelName: 'liveBooks',
+
+}, {
+    sequelize: DbInstance,
+    modelName: 'Book',
+    tableName: 'BookMs',
     createdAt: false,
     updatedAt: false,
-  }
-);
+    onDelete:'CASCADE',
+})
 
-module.exports = { liveBooks };
+LibraryM.hasMany(Book, { foreignKey: 'libraryId' });
 
-const { Libraries } = require('./librarys')
-
-
-Libraries.hasMany(liveBooks, {
-  foreignKey: 'libraryId',
-  onDelete: 'CASCADE',
-});
-liveBooks.belongsTo(Libraries, { foreignKey: 'libraryId' });
-
-  
+module.exports = {Book};
