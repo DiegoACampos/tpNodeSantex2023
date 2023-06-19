@@ -1,12 +1,11 @@
 const express = require('express');
-const libraryController = require('../controllers/library-controller');
-
+const libraryController = require('../controller/libraries-controller')
 const router = express.Router();
 
-router.post('/create', libraryController.createLibrary);
-router.get('/getById/:id', libraryController.getLibraryById);
-router.get('/getAll', libraryController.getAllLibraries);
-router.put('/modify/:id',libraryController.editLibrary);
-router.delete('/delete/:id', libraryController.deleteLibrary);
+router.post('/createLibrary', libraryController.createLibrary);
+router.get('/getLibrary/:id', libraryController.getLibraryById);
+router.get('/getAllLibraries', libraryController.getAllLibraries);
+router.put('/editLibrary/:id', libraryController.editLibrary);
+router.delete('/deleteLibrary/:id', libraryController.deleteOneLibrary);
 
 module.exports = router;
