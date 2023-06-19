@@ -1,5 +1,5 @@
 const express = require('express');
-const libraryController = require('../controller/libraries-controller')
+const libraryController = require('../controllers/librarys-controller')
 const router = express.Router();
 
 router.post('/createLibrary', libraryController.createLibrary);
