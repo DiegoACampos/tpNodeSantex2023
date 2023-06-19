@@ -1,10 +1,10 @@
 const express = require('express');
-const bookRoutes = require('./src/routes/books-routes')
-const librariesRoutes = require('./src/routes/libraries-routes');
+const bookRoutes = require('./src/routes/book-routes')
+const librariesRoutes = require('./src/routes/librarys-routes');
 const userRoutes = require('./src/routes/user-routes')
 const { errorHandlerMiddleware } = require('./src/middleware/error-handler')
-const {Book} = require('./src/models/books')
-const {LibraryM} = require('./src/models/libraries')
+const {Book} = require('./src/models/book')
+const {LibraryM} = require('./src/models/librarys')
 const {User} = require('./src/models/user')
 
 const app = express();
