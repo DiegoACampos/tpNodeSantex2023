@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const { DbInstance } = require('../db/sequelize-config');
-const {LibraryM} = require('./libraries')
+const {LibraryM} = require('./librarys')
 
 
 class Book extends Model { };
