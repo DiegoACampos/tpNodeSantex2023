@@ -1,47 +1,56 @@
-const { liveBooks } = require('../models/book')
-const { Libraries } = require('../models/librarys');
+const { Book } = require('../models/books');
+const { LibraryM } = require('../models/libraries');
 
-async function createLibrary(name, location, telephone) {
-  const Library = await Libraries.create({ name, location, telephone });
+async function create(nombre, location, telefono) {
+    const libraries = LibraryM.build({
 
-  return Library;
+        nombre: nombre,
+        location: location,
+        telefono: telefono
+    })
+
+    const libraryCreated = await libraries.save()
+    return libraryCreated
 }
 
-async function getLibraryById(id) {
-  const library = await Libraries.findByPk(id, {
-    include: liveBooks, 
-  });
-
-  return library;
+async function getLibrary(id) {
+    const library = await LibraryM.findByPk(id,{include:[{model:Book}]})
+    if(!library){
+        throw new Error(`Libreria no encontrada`)
+    }
+    return library
 }
 
-async function getAllLibraries() {
-  const Library = await Libraries.findAll();
-
-  return Library;
+async function getAll() {
+    const listLibraries = await LibraryM.findAll();
+    return listLibraries
 }
 
-async function editLibrary(id, name, location, telephone) {
-  const library = await Libraries.findByPk(id);
-  if (!library) {
-    throw new Error('Librería no encontrada');
-  }
-
-  library.name = name;
-  library.location = location;
-  library.telephone = telephone;
-
-  await library.save();
-
-  return library;  
+async function edit(id, nombre, location, telefono) {
+    const library = await LibraryM.findByPk(id)
+    if(!library){
+        throw new Error(`Libreria no encontrada`)
+    }
+    if (nombre) {
+        library.nombre = nombre
+    }
+    if (location) {
+        library.location = location
+    }
+    if (telefono) {
+        library.telefono = telefono
+    }
+    const editedLibrary = library.save()
+    return editedLibrary
 }
 
-async function deleteLibrary(id) {
-  const deletedLibrary = await Libraries.destroy({
-    where: {id},
-  });
-
-  return deletedLibrary;
+async function deleteLibrary(id){
+    const library = await LibraryM.findByPk(id,{include:[{model:Book}]})
+    if(!library){
+        throw new Error(`Libreria no encontrada`)
+    }
+    await library.destroy()
 }
 
-module.exports = { createLibrary, getLibraryById, getAllLibraries, deleteLibrary, editLibrary };
+
+module.exports = { getAll, getLibrary, create, edit, deleteLibrary }
