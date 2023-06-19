@@ -1,4 +1,4 @@
-const  {Book}  = require('../models/books');
+const  {Book}  = require('../models/book');
 
 async function create (isbn,titulo,autor,year,libraryId){
     const book = Book.build({
