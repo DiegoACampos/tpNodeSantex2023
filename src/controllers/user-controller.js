@@ -1,5 +1,5 @@
 const { User } = require('../models/user');
-const userService = require('../service/user-service')
+const userService = require('../services/user-service')
 
 async function createUser(req, res) {
     const { name, password } = req.body;
