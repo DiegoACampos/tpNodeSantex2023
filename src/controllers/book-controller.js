@@ -1,4 +1,4 @@
-const bookService = require('../service/book-service')
+const bookService = require('../services/book-service')
 
 async function createBook(req, res) {
     const { isbn, titulo, autor, year, libraryId } = req.body;
