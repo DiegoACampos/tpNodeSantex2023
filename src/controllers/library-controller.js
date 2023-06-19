@@ -1,5 +1,5 @@
-const { Book } = require('../models/books');
-const libraryService = require('../service/libraries-service');
+const { Book } = require('../models/book');
+const libraryService = require('../services/librarys-service');
 
 async function createLibrary(req, res) {
     const { nombre, location, telefono } = req.body;
