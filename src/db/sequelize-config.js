@@ -1,30 +1,12 @@
 const { Sequelize } = require('sequelize');
 
-const libraryDbInstance = new Sequelize({
-  host: 'localhost',
-  database: 'Library',
-  username: 'root',
-  password: 'pocho1988',
-  dialect: 'mysql',
-  port: 3306,
-});
-
-const bookDbInstance = new Sequelize( {
-  host: 'localhost',
-  database: 'Library',
-  username: 'root',
-  password: 'pocho1988',
-  dialect: 'mysql',
-  port: 3306,
-});
-
-const userDbInstance = new Sequelize({
-  host: 'localhost',
-  database: 'Library',
-  username:'root',
-  password: 'pocho1988',  
-  dialect: 'mysql',
-  port: 3306
+const DbInstance = new Sequelize({
+    host:'localhost',
+    database:'Library',
+    username:'root',
+    password:'pocho1988',
+    port:3306,
+    dialect:'mysql'
 })
 
-module.exports = { libraryDbInstance, bookDbInstance, userDbInstance };
+module.exports = {DbInstance}
