@@ -1,11 +1,13 @@
 const express = require('express');
 const libraryController = require('../controllers/library-controller')
+const { isAuthenticated } = require('../middleware/authentication')
+
 const router = express.Router();
 
-router.post('/createLibrary', libraryController.createLibrary);
+router.post('/createLibrary', isAuthenticated, libraryController.createLibrary);
 router.get('/getLibrary/:id', libraryController.getLibraryById);
 router.get('/getAllLibraries', libraryController.getAllLibraries);
-router.put('/editLibrary/:id', libraryController.editLibrary);
-router.delete('/deleteLibrary/:id', libraryController.deleteOneLibrary);
+router.put('/editLibrary/:id', isAuthenticated, libraryController.editLibrary);
+router.delete('/deleteLibrary/:id', isAuthenticated, libraryController.deleteOneLibrary);
 
 module.exports = router;

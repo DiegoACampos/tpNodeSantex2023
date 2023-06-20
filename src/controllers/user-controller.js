@@ -7,14 +7,14 @@ async function createUser(req, res) {
     res.status(201).send("Usuario creado correctamente")
 }
 
-async function getUserById(req, res, next) {
-    const { id } = req.params;
+async function loginUser(req, res, next) {
+    const { id, password } = req.body
     try {
-        const user = await libraryService.getUser(id)
-        res.status(200).send("Usuario autorizado")
+        const result = await userService.login(id, password)
+        res.status(200).send(result)
     } catch (error) {
         next(error)
     }
 }
 
-module.exports = { createUser, getUserById }
+module.exports = { createUser, loginUser }

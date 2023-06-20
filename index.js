@@ -6,6 +6,7 @@ const { errorHandlerMiddleware } = require('./src/middleware/error-handler')
 const {Book} = require('./src/models/book')
 const {LibraryM} = require('./src/models/librarys')
 const {User} = require('./src/models/user')
+const { initializeAuthetication } = require('./src/auth/auth')
 
 const app = express();
 const PORT = 5000;
@@ -13,7 +14,7 @@ const PORT = 5000;
 LibraryM.sync();
 Book.sync();
 User.sync();
-
+initializeAuthetication();
 
 app.use(express.json())
 app.use('/library', librariesRoutes)
