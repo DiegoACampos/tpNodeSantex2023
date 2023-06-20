@@ -11,10 +11,10 @@ function create(name, password) {
     return logUser
 }
 
-async function login(id,password) {
+async function login(name,password) {
     const user = await User.findOne({
         where:{
-            id: id,
+            name: name,
             password: password
         }
     })

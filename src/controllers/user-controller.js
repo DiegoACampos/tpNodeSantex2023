@@ -8,9 +8,9 @@ async function createUser(req, res) {
 }
 
 async function loginUser(req, res, next) {
-    const { id, password } = req.body
+    const { name, password } = req.body
     try {
-        const result = await userService.login(id, password)
+        const result = await userService.login(name, password)
         res.status(200).send(result)
     } catch (error) {
         next(error)
