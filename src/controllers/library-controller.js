@@ -1,5 +1,6 @@
 const { Book } = require('../models/book');
 const libraryService = require('../services/library-service');
+const bookService = require('../services/book-service')
 
 async function createLibrary(req, res) {
     const { nombre, location, telefono } = req.body;
@@ -43,4 +44,10 @@ async function deleteOneLibrary(req, res, next) {
     }
 }
 
-module.exports = { createLibrary, getLibraryById, getAllLibraries, editLibrary, deleteOneLibrary }
+async function addBook(req, res) {
+    const { isbn, titulo, autor, year, libraryId } = req.body;
+    const book = await bookService.create(isbn, titulo, autor, year, libraryId)
+    res.status(201).send(book)
+}
+
+module.exports = { createLibrary, getLibraryById, getAllLibraries, editLibrary, deleteOneLibrary, addBook }
