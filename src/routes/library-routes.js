@@ -9,6 +9,6 @@ router.get('/getLibrary/:id', libraryController.getLibraryById);
 router.get('/getAllLibraries', libraryController.getAllLibraries);
 router.put('/editLibrary/:id', isAuthenticated, libraryController.editLibrary);
 router.delete('/deleteLibrary/:id', isAuthenticated, libraryController.deleteOneLibrary);
-router.post('/addBook',isAuthenticated, libraryController.addBook);
+router.post('/addBook/:id',isAuthenticated, libraryController.addBook);
 
 module.exports = router;

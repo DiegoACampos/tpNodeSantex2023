@@ -1,5 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const { DbInstance } = require('../db/sequelize-config');
+const { User } = require('./user');
 
 class LibraryM extends Model { }
 
@@ -20,7 +21,10 @@ LibraryM.init({
     telefono: {
         type: DataTypes.STRING,
         allowNull: false
-    }
+    },
+    userId: {
+        type: DataTypes.INTEGER
+    },
 }, {
     sequelize: DbInstance,
     modelName: 'LibraryM',
@@ -28,5 +32,8 @@ LibraryM.init({
     createdAt: false,
     updatedAt: false
 })
+
+User.hasMany(LibraryM, { foreignKey: 'userId' })
+
 
 module.exports = { LibraryM };
