@@ -6,7 +6,9 @@ const { errorHandlerMiddleware } = require('./src/middleware/error-handler')
 const {Book} = require('./src/models/book')
 const {LibraryM} = require('./src/models/librarys')
 const {User} = require('./src/models/user')
-const { initializeAuthetication } = require('./src/auth/auth')
+const { initializeAuthetication } = require('./src/auth/auth');
+const { create } = require('./src/services/book-service');
+const { createAUser } = require('./src/services/user-service');
 
 const app = express();
 const PORT = 5000;
@@ -27,3 +29,4 @@ app.listen(PORT, () => {
     console.log(`App corriendo en puerto ${PORT}`)
 })
 
+createAUser("admin","admin")

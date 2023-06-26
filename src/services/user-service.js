@@ -1,7 +1,7 @@
 const { User } = require('../models/user');
 const jwt = require('jsonwebtoken');
 
-function create(name, password) {
+function createAUser(name, password) {
     const user = new User()
 
     user.name = name
@@ -32,4 +32,4 @@ async function login(name,password) {
     }
 }
 
-module.exports = { create, login }
+module.exports = { createAUser, login }

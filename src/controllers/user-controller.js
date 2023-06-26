@@ -3,7 +3,7 @@ const userService = require('../services/user-service')
 
 async function createUser(req, res) {
     const { name, password } = req.body;
-    await userService.create(name, password)
+    await userService.createAUser(name, password)
     res.status(201).send("Usuario creado correctamente")
 }
 

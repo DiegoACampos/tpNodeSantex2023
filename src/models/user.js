@@ -12,9 +12,11 @@ User.init({
     },
     name: {
         type: DataTypes.STRING,
+        defaultValue:["admin"]
     },
     password: {
         type: DataTypes.STRING,
+        defaultValue:["admin"]
     }
 }, {
     sequelize: DbInstance,
